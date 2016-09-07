@@ -1,0 +1,27 @@
+version: '2'
+services:
+  openldap:
+    image: mbettan/openldap-codar:latest
+    container_name: openldap-codar
+    environment:
+      SLAPD_PASSWORD: "admin"
+      SLAPD_DOMAIN: "example.com"
+    tty: true
+    stdin_open: true
+    volumes:
+      - /etc/ldap
+      - /var/lib/ldap
+    ports:
+      - "389:389"
+    hostname: "example.com"
+  phpldapadmin:
+    image: osixia/phpldapadmin:latest
+    container_name: phpldapadmin
+    environment:
+      PHPLDAPADMIN_LDAP_HOSTS: "openldap"
+      PHPLDAPADMIN_HTTPS: "false"
+    ports:
+      - "8080:80"
+    depends_on:
+      - openldap
+
