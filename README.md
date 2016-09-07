@@ -6,8 +6,9 @@ This project provides additional Docker Containers for HPE Codar :
 
 # Docker Compose 
 wget https://raw.githubusercontent.com/mbettan/codar-content/master/docker-compose.yml
+
 docker-compose up
 
-# Docker Engine
+# Docker Engine (alternative)
 docker run -d -p 389:389 -e SLAPD_PASSWORD=admin -e SLAPD_DOMAIN=example.com mbettan/codar-openldap:latest
 
